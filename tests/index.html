@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+</head>
+<body>
+<div id="result"></div>
+<table>
+    <thead>
+        <th>Canvas</th>
+        <th>Description</th>
+        <th>Result</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <canvas id="first" width="150" height="150"></canvas>
+            </td>
+            <td>
+                <script type="module">
+                    import {Area} from "../Area.js"
+                    let canvas = document.getElementById('first')
+                    let c = canvas.getContext('2d')
+                    c.fillStyle='red'
+                    c.fillRect(0, 0, canvas.width, canvas.height)
+                    let a = new Area({top: {x: 0, y: 0}, bottom: {x: 100, y: 100}})
+                    let b = new Area({top: {x: 0, y: 0}, bottom: {x: 50, y: 50}})
+                    c.beginPath()
+                    c.rect(a.left, a.top, a.right, a.bottom)
+                    c.rect(b.left, b.top, b.right, b.bottom)
+                    c.stroke()
+                    document.getElementById('first_result').innerText = a.collidesWith({area: b})
+                </script>
+            </td>
+            <td id="first_result"></td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="second" width="150" height="150"></canvas>
+            </td>
+            <td>
+                <script type="module">
+                    import {Area} from "../Area.js"
+                    let canvas = document.getElementById('second')
+                    let c = canvas.getContext('2d')
+                    c.fillStyle='red'
+                    c.fillRect(0, 0, canvas.width, canvas.height)
+                    let a = new Area({top: {x: 0, y: 0}, bottom: {x: 100, y: 100}})
+                    let b = new Area({top: {x: 0, y: 0}, bottom: {x: 50, y: 50}})
+                    c.beginPath()
+                    c.rect(a.left, a.top, a.right, a.bottom)
+                    c.rect(b.left, b.top, b.right, b.bottom)
+                    c.stroke()
+                    document.getElementById('second_result').innerText = b.collidesWith({area: a})
+                </script>
+            </td>
+            <td id="second_result"></td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="third"></canvas>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="fourth"></canvas>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="fifth"></canvas>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+<script type="module" src="index.js"></script>
+<script type="module" src="../Area.js"></script>
+</html>
